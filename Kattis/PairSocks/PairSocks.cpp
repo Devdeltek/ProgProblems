@@ -15,6 +15,7 @@ int main(){
     auto start = chrono::high_resolution_clock::now();
     vector<long> pile;
     long temp1, temp2;
+    
     cin >> temp1;
     for(int i = 1; i < 2*pairs; i++){
         cin >> temp2;
@@ -30,7 +31,7 @@ int main(){
 
     int i = 0;
     bool check = pal(pile);
-    
+    /*
     while(check){
         if(pal(pile)){
             break;
@@ -38,7 +39,7 @@ int main(){
         if(!dups(pile)){
             check = false;
         }
-    }
+    }*/
     
     if(check){
         cout <<  2*pairs << endl;
