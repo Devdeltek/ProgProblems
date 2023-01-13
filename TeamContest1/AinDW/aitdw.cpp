@@ -30,7 +30,6 @@ int main(){
 				containsM = true;
 				lastM = j;
 				sum += nums[j];
-
 			}
 			else if(nums[j] < m){
 				containsM = false;
