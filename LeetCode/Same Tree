@@ -1,0 +1,72 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        queue<TreeNode*> treeOne;
+        queue<TreeNode*> treeTwo;
+        if(p){
+            treeOne.push(p);
+        }
+        if(q){
+            treeTwo.push(q);
+        }
+        while(!treeOne.empty() && !treeTwo.empty()){
+            TreeNode* tempOne = treeOne.front();
+            TreeNode* tempTwo = treeTwo.front();
+            treeOne.pop();
+            treeTwo.pop();
+            bool hasLeft = false;
+            bool hasRight = false;
+            if(tempOne->val != tempTwo->val){
+                return false;
+            }
+            
+            if(tempOne->left){
+                hasLeft = true;
+                treeOne.push(tempOne->left);
+            }
+            if(tempTwo->left){
+                if(hasLeft){
+                    treeTwo.push(tempTwo->left);
+                }
+                else{
+                    return false;
+                }
+            }
+            else{
+                if(hasLeft){
+                    return false;
+                }
+            }
+
+            if(tempOne->right){
+                hasRight = true;
+                treeOne.push(tempOne->right);
+            }
+            if(tempTwo->right){
+                if(hasRight){
+                    treeTwo.push(tempTwo->right);
+                }
+                else{
+                    return false;
+                }
+            }
+            else{
+                if(hasRight){
+                    return false;
+                }
+            }
+        }
+        return treeOne.empty() && treeTwo.empty();
+    }
+};
